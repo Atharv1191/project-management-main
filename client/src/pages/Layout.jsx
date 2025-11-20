@@ -18,12 +18,18 @@ const Layout = () => {
         dispatch(loadTheme())
     }, [])
     //initial load of workspaces
-    useEffect(()=>{
-        if(isLoaded && user && workspaces.length ===0){
-            dispatch(fetchWorkspaces({getToken}))
+    // useEffect(()=>{
+    //     if(isLoaded && user && workspaces.length ===0){
+    //         dispatch(fetchWorkspaces({getToken}))
 
-        }
-    },[user,isLoaded])
+    //     }
+    // },[user,isLoaded])
+    useEffect(() => {
+  if (isLoaded && user) {
+    dispatch(fetchWorkspaces({ getToken }))
+  }
+}, [isLoaded, user, workspaces.length])
+
     if(!user){
         return (
             <div className='flex justify-center items-center h-screen bg-white dark:bg-zinc-950'>
